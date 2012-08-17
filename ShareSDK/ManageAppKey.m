@@ -27,9 +27,13 @@
 
 - (id)init{
     if (self = [super init]) {
-        self.appKey = kQWBSDKAppKey;
-        self.appSecret = kQWBSDKAppSecret;
         [self loadDefaultKey];
+        if( ![self.appKey isEqualToString:kQWBSDKAppKey] || ![self.appSecret isEqualToString:kQWBSDKAppSecret]){
+            self.appKey = kQWBSDKAppKey;
+            self.appSecret = kQWBSDKAppSecret;
+            self.tokenKey = nil;
+            self.tokenSecret = nil;
+        }
     }
     return self;
 }

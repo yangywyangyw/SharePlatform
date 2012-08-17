@@ -26,6 +26,11 @@
     return self;
 }
 
+- (void)dealloc{
+    [super dealloc];
+    [permisions release];
+}
+
 - (void)loginByOAuth{
     [self.tencentOAuth authorize:permissions inSafari:NO];
 }

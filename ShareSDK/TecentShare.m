@@ -29,6 +29,13 @@
     return self;
 }
 
+- (id)initWithRootVC:(UIViewController*)rootView{
+    if (self = [self init]) {
+        rootView_ = rootView;
+    }
+    return self;
+}
+
 - (void)dealloc{
     [super dealloc];
     [manageAppKey release];
@@ -38,7 +45,7 @@
 }
 
 - (void)loginByOAuth{
-
+    
 	
     QWeiboSyncApi *api = [[[QWeiboSyncApi alloc] init] autorelease];
     NSString *retString = [api getRequestTokenWithConsumerKey:kQWBSDKAppKey consumerSecret:kQWBSDKAppSecret];
@@ -73,9 +80,18 @@
 }
 
 - (void)loginOutByOAuth{
-
+    manageAppKey.tokenSecret = nil;
+    manageAppKey.tokenKey = nil;
+    [manageAppKey saveDefaultKey];
 }
 
+- (bool)isLogin{
+    if (manageAppKey.tokenKey && ![manageAppKey.tokenKey isEqualToString:@""]
+        && manageAppKey.tokenSecret && ![manageAppKey.tokenSecret isEqualToString:@""]) {
+        return true;
+    }
+    return false;
+}
 
 - (bool)shareWithText:(NSString *)text AndPicture:(UIImage *)image{
     
@@ -94,7 +110,7 @@
 										   imageFile:filePath
 										  resultType:RESULTTYPE_JSON
 											delegate:self];
-
+    
     return YES;
 }
 
@@ -108,20 +124,20 @@
 #pragma mark UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-
+    
     NSString *query = [[request URL] query];
 	NSString *verifier = [self valueForKey:@"oauth_verifier" ofQuery:query];
 	
 	if (verifier && ![verifier isEqualToString:@""]) {
 		
-
+        
 		QWeiboSyncApi *api = [[[QWeiboSyncApi alloc] init] autorelease];
 		NSString *retString = [api getAccessTokenWithConsumerKey:manageAppKey.appKey
 												  consumerSecret:manageAppKey.appSecret
 												 requestTokenKey:manageAppKey.tokenKey
 											  requestTokenSecret:manageAppKey.tokenSecret
 														  verify:verifier];
-	//	NSLog(@"\nget access token:%@", retString);
+        //	NSLog(@"\nget access token:%@", retString);
 		[manageAppKey parseTokenKeyWithResponse:retString];
 		[manageAppKey saveDefaultKey];
         
@@ -144,8 +160,8 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-     self.resultData = [NSMutableData data] ;
-  //  NSLog(@"total = %d", [response expectedContentLength]);
+    self.resultData = [NSMutableData data] ;
+    //  NSLog(@"total = %d", [response expectedContentLength]);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection{
@@ -165,7 +181,7 @@
         }
         NSLog(@"share message to tecent weibo success.....");
     }
-//    NSLog(@"%@",strResponse);
+    //    NSLog(@"%@",strResponse);
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
@@ -175,4 +191,6 @@
     self.connection = nil;
     NSLog(@"share message to tecent weibo failure:%@",error);
 }
+
+
 @end

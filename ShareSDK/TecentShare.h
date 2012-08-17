@@ -20,7 +20,8 @@
     NSMutableData *resultData;
     id <ShareDelegate> delegate;
     WBAuthorizeWebView *authView;
- 
+    UIViewController *rootView_;
+    
 }
 @property (nonatomic,assign) id delegate;
 @property (nonatomic,retain) NSURLConnection *connection;
@@ -29,6 +30,7 @@
 - (void)loginByOAuth;
 - (void)loginOutByOAuth;
 - (bool)shareWithText:(NSString*)text AndPicture:(UIImage*)image;
-
+- (bool)isLogin;
+- (id)initWithRootVC:(UIViewController*)rootView;
 
 @end

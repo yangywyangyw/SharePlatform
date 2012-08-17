@@ -56,6 +56,7 @@
     [self.sinaShare release];
     [self.tecentShare release];
     [self.taoBaoManager release];
+    [self.qqShare release];
 }
 
 - (void)viewDidLoad{
