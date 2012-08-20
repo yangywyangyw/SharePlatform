@@ -390,7 +390,7 @@ params   = _params;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType {
 	NSURL* url = request.URL;
-//	NSLog([NSString stringWithFormat:@"absolute url : %@", [url absoluteURL]]);
+	NSLog([NSString stringWithFormat:@"absolute url : %@", [url absoluteURL]]);
 	
 	NSRange start = [[url absoluteString] rangeOfString:@"access_token="];
 	if (start.location != NSNotFound)

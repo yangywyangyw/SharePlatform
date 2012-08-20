@@ -200,9 +200,9 @@
 {
     [self deleteAuthorizeDataInKeychain];
     
-    if ([delegate respondsToSelector:@selector(engineDidLogOut:)])
+    if ([delegate respondsToSelector:@selector(engineDiNSLogOut:)])
     {
-        [delegate engineDidLogOut:self];
+        [delegate engineDiNSLogOut:self];
     }
 }
 
@@ -304,9 +304,9 @@
     
     [self saveAuthorizeDataToKeychain];
     
-    if ([delegate respondsToSelector:@selector(engineDidLogIn:)])
+    if ([delegate respondsToSelector:@selector(engineDiNSLogIn:)])
     {
-        [delegate engineDidLogIn:self];
+        [delegate engineDiNSLogIn:self];
     }
 }
 

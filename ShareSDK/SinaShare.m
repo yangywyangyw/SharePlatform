@@ -73,7 +73,7 @@
     NSLog(@"all ready login sina weibo!");
 }
 
-- (void)engineDidLogIn:(WBEngine *)engine{
+- (void)engineDiNSLogIn:(WBEngine *)engine{
     if ([self.delegate respondsToSelector:@selector(loginSuccess:)]) {
         [self.delegate loginSuccess];
     }
@@ -87,7 +87,7 @@
     NSLog(@"login sina weibo error: %@", error);
 }
 
-- (void)engineDidLogOut:(WBEngine *)engine{
+- (void)engineDiNSLogOut:(WBEngine *)engine{
     if ([self.delegate respondsToSelector:@selector(logoutSuccess:)]) {
         [self.delegate logoutSuccess];
     }

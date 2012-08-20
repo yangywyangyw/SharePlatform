@@ -652,8 +652,8 @@ redirectURI = _redirectURI;
 
 	[self requestWithGraphPath:kMe andParams:params andDelegate:self];
 		
-//	if ([self.sessionDelegate respondsToSelector:@selector(tencentDidLogin)]) {
-//		[_sessionDelegate tencentDidLogin];
+//	if ([self.sessionDelegate respondsToSelector:@selector(tencentDiNSLogin)]) {
+//		[_sessionDelegate tencentDiNSLogin];
 //	}
 	
 }
@@ -721,8 +721,8 @@ redirectURI = _redirectURI;
 	_openId = [openid copy];
 	[_loginDialog dismissWithSuccess:YES animated:YES];
 		
-	if ([self.sessionDelegate respondsToSelector:@selector(tencentDidLogin)]) {
-		[_sessionDelegate tencentDidLogin];
+	if ([self.sessionDelegate respondsToSelector:@selector(tencentDiNSLogin)]) {
+		[_sessionDelegate tencentDiNSLogin];
 	}
 	NSLog(@"received didLoad success clientid=%@, openid=%@", client_id, openid);
 };

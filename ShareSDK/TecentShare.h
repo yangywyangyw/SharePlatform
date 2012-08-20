@@ -26,6 +26,7 @@
 @property (nonatomic,assign) id delegate;
 @property (nonatomic,retain) NSURLConnection *connection;
 @property (nonatomic,retain) NSMutableData *resultData;
+@property (nonatomic,retain) ManageAppKey *manageAppKey;
 
 - (void)loginByOAuth;
 - (void)loginOutByOAuth;

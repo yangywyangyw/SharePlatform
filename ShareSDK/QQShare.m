@@ -39,6 +39,9 @@
     
 }
 
+- (bool)isLogin{
+    return false;
+}
 
 - (void)getUserInfo{
     [self.tencentOAuth getUserInfo];
@@ -59,7 +62,7 @@
 	}
 }
 
-- (void)tencentDidLogin{
+- (void)tencentDiNSLogin{
     NSLog(@"login qq platform success...");
     if ([self.delegate respondsToSelector:@selector(loginSuccess:)]) {
         [self.delegate loginSuccess];

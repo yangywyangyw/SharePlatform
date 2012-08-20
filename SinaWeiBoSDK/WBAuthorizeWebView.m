@@ -316,7 +316,7 @@
 - (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSRange range = [request.URL.absoluteString rangeOfString:@"code="];
-    
+   // NSLog(@"request url absolute string is: %@",request.URL.absoluteString);
     if (range.location != NSNotFound)
     {
         NSString *code = [request.URL.absoluteString substringFromIndex:range.location + range.length];

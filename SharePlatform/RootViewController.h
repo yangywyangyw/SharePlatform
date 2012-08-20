@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SaveUserInfoToServer.h"
 @class SinaShare;
 @class ShareSDKAbstract;
 @class TBAuthManeger;
@@ -25,5 +25,7 @@
 @property (nonatomic,retain) ShareSDKAbstract *tecentShare;
 @property (nonatomic,retain) ShareSDKAbstract *qqShare;
 @property (nonatomic,retain) TBAuthManeger *taoBaoManager;
+@property (nonatomic,retain) SaveUserInfoToServer *saveSinaUserInfo;
+@property (nonatomic,retain) SaveUserInfoToServer *saveTXUserInfo;
 
 @end

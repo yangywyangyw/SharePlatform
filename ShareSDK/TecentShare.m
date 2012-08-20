@@ -16,9 +16,11 @@
 
 
 @implementation TecentShare
+
 @synthesize connection = _connection;
 @synthesize resultData;
 @synthesize delegate;
+@synthesize manageAppKey;
 
 - (id)init{
     if (self = [super init]) {
@@ -62,7 +64,7 @@
     //[webView loadRequestWithURL:[NSURL URLWithString:urlString]];
     [authView show:YES];
     authView.webView.delegate = self;
-    [authView release];
+   // [authView release];
     
 }
 
@@ -114,20 +116,15 @@
     return YES;
 }
 
-- (void)authorizeWebView:(WBAuthorizeWebView *)webView didReceiveAuthorizeCode:(NSString *)code
-{
-    [authView hide:YES];
-}
-
-
 #pragma mark -
 #pragma mark UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     
     NSString *query = [[request URL] query];
+    NSLog(@"query is :%@",query);
 	NSString *verifier = [self valueForKey:@"oauth_verifier" ofQuery:query];
-	
+	NSLog(@"verifier is :%@",verifier);
 	if (verifier && ![verifier isEqualToString:@""]) {
 		
         
@@ -137,14 +134,14 @@
 												 requestTokenKey:manageAppKey.tokenKey
 											  requestTokenSecret:manageAppKey.tokenSecret
 														  verify:verifier];
-        //	NSLog(@"\nget access token:%@", retString);
+        	NSLog(@"\nget access token:%@", retString);
 		[manageAppKey parseTokenKeyWithResponse:retString];
 		[manageAppKey saveDefaultKey];
         
         if ([[self delegate] respondsToSelector:@selector(loginSuccess:)]) {
             [delegate loginSuccess];
         }
-        NSLog(@"after login:\n%@\n%@\n%@\n%@",manageAppKey.appKey,manageAppKey.appSecret,manageAppKey.tokenKey,manageAppKey.tokenSecret);
+    //    NSLog(@"after login:\n%@\n%@\n%@\n%@",manageAppKey.appKey,manageAppKey.appSecret,manageAppKey.tokenKey,manageAppKey.tokenSecret);
         [authView hide:NO];
         return NO;
 	}

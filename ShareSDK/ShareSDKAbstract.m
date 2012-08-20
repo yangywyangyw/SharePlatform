@@ -18,7 +18,12 @@
 
 - (bool)shareWithText:(NSString *)text AndPicture:(UIImage *)image{
 
-    return YES;
+    return false;
+}
+
+- (bool)isLogin{
+
+    return false;
 }
 
 @end

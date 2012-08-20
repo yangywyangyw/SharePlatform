@@ -29,5 +29,6 @@
 
 - (void)loginByOAuth;
 - (void)loginOutByOAuth;
+- (bool)isLogin;
 
 @end

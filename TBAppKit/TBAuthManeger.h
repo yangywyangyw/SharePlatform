@@ -14,6 +14,7 @@
 @property (copy,nonatomic) NSMutableArray * userIds;
 
 - (void)loginByOAuth;
+- (bool)isLogin;
 - (void)responseOutsideRequest:(NSURL*)url;
 
 @end

@@ -28,6 +28,12 @@
     userIds = nil;
 }
 
+-  (bool)isLogin{
+
+    return false;
+}
+
+
 - (void)loginByOAuth{
     TopIOSClient *iosClient = [TopIOSClient getIOSClientByAppKey:kTBSDKAppKey];
     [iosClient auth:self cb:@selector(authCallback:)];

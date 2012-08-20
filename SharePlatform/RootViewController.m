@@ -11,11 +11,18 @@
 #import "TecentShare.h"
 #import "TBAuthManeger.h"
 #import "QQShare.h"
+#import "SaveUserInfoToServer.h"
+#import "SaveSinaWeiboUserInfo.h"
+#import "SaveTXWeiboUserInfo.h"
+#import "CommonDefine.h"
+#import "ManageAppKey.h"
 
 @implementation RootViewController
 
 @synthesize loginSinaWeibo;
 @synthesize loginTB;
+@synthesize saveSinaUserInfo;
+@synthesize saveTXUserInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,6 +64,8 @@
     [self.tecentShare release];
     [self.taoBaoManager release];
     [self.qqShare release];
+    [self.saveSinaUserInfo release];
+    [self.saveTXUserInfo release];
 }
 
 - (void)viewDidLoad{
@@ -128,6 +137,11 @@
     self.taoBaoManager = [[TBAuthManeger alloc] init];
     self.qqShare = [[QQShare alloc] init];
     ((QQShare*)(self.qqShare)).delegate = self;
+    
+    self.saveSinaUserInfo = [[SaveSinaWeiboUserInfo alloc] init];
+    ManageAppKey *appkey = [[ManageAppKey alloc] init];
+    NSLog(@"appkey = %@, appsecret = %@",appkey.tokenKey,appkey.tokenSecret);
+    self.saveTXUserInfo = [[SaveTXWeiboUserInfo alloc] initWithTokenKey:appkey.tokenKey  AndTokenSecret:appkey.tokenSecret];
 }
 
 - (void)loginQQFunc:(id)sender{
@@ -166,12 +180,14 @@
     if ([self.sinaShare sinaEngine] != nil) {
         [self.sinaShare loginByOAuth];
     }
+    [self.saveSinaUserInfo saveUserInfo];
 }
 
 - (void)loginTecentIsPressed:(id)sender{
     if (self.tecentShare != nil) {
         [self.tecentShare loginByOAuth];
     }
+    [self.saveTXUserInfo saveUserInfo];
 }
 
 - (void)viewDidUnload

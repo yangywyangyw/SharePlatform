@@ -239,10 +239,10 @@
  * Called when the user successfully logged in.
  */
 /*!
- @method     tencentDidLogin
+ @method     tencentDiNSLogin
  @discussion Called when the user successfully logged in.
  */
-- (void)tencentDidLogin;
+- (void)tencentDiNSLogin;
 
 /**
  * Called when the user dismissed the dialog without logging in.
@@ -267,10 +267,10 @@
  * Called when the user logged out.
  */
 /*!
- @method     tencentDidLogout
+ @method     tencentDiNSLogout
  @discussion Called when the user logged out.
  */
-- (void)tencentDidLogout;
+- (void)tencentDiNSLogout;
 
 /**
  * Called when the get_user_info has response.

@@ -34,7 +34,7 @@
 - (void)engineAlreadyLoggedIn:(WBEngine *)engine;
 
 // Log in successfully.
-- (void)engineDidLogIn:(WBEngine *)engine;
+- (void)engineDiNSLogIn:(WBEngine *)engine;
 
 // Failed to log in.
 // Possible reasons are:
@@ -43,7 +43,7 @@
 - (void)engine:(WBEngine *)engine didFailToLogInWithError:(NSError *)error;
 
 // Log out successfully.
-- (void)engineDidLogOut:(WBEngine *)engine;
+- (void)engineDiNSLogOut:(WBEngine *)engine;
 
 // When you use the WBEngine's request methods,
 // you may receive the following four callbacks.
@@ -93,15 +93,15 @@
 - (id)initWithAppKey:(NSString *)theAppKey appSecret:(NSString *)theAppSecret;
 
 // Log in using OAuth Web authorization.
-// If succeed, engineDidLogIn will be called.
+// If succeed, engineDiNSLogIn will be called.
 - (void)logIn;
 
 // Log in using OAuth Client authorization.
-// If succeed, engineDidLogIn will be called.
+// If succeed, engineDiNSLogIn will be called.
 - (void)logInUsingUserID:(NSString *)theUserID password:(NSString *)thePassword;
 
 // Log out.
-// If succeed, engineDidLogOut will be called.
+// If succeed, engineDiNSLogOut will be called.
 - (void)logOut;
 
 // Check if user has logged in, or the authorization is expired.

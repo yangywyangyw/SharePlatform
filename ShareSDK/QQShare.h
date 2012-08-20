@@ -21,5 +21,6 @@
 @property (nonatomic,assign) id delegate;
 
 - (void)getUserInfo;
+- (bool)isLogin;
 
 @end

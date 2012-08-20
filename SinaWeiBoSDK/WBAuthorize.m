@@ -161,7 +161,7 @@
     if ([result isKindOfClass:[NSDictionary class]])
     {
         NSDictionary *dict = (NSDictionary *)result;
-        
+      //  NSLog(@"request result is :%@",result);
         NSString *token = [dict objectForKey:@"access_token"];
         NSString *userID = [dict objectForKey:@"uid"];
         NSInteger seconds = [[dict objectForKey:@"expires_in"] intValue];
